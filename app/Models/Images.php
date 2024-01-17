@@ -11,7 +11,7 @@ class Images extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        'project_id','url'
+        'project_id','url','url_code'
     ];
     public function project(){
         return  $this->belongsTo(Projects::class,'project_id');

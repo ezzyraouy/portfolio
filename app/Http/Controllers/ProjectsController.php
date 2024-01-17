@@ -44,10 +44,18 @@ class ProjectsController extends Controller
         }
         $project = Projects::create($input);
         if ($images = $request->file('images')) {
-            foreach ($images as  $media) {
-                $url = $media->store('images/project', 'public');
+            foreach ($images as  $item) {
+                $url = $item->store('images/project', 'public');
                 $project->images()->create([
                     'url' => $url,
+                ]);
+            }
+        }
+        if ($images_code = $request->file('images_code')) {
+            foreach ($images_code as  $item) {
+                $url = $item->store('images/project', 'public');
+                $project->images()->create([
+                    'url_code' => $url,
                 ]);
             }
         }
@@ -94,10 +102,18 @@ class ProjectsController extends Controller
         $project = Projects::findOrFail($id);
         $project->update($input);
         if ($images = $request->file('images')) {
-            foreach ($images as  $media) {
-                $url = $media->store('images/project', 'public');
+            foreach ($images as  $item) {
+                $url = $item->store('images/project', 'public');
                 $project->images()->create([
                     'url' => $url,
+                ]);
+            }
+        }
+        if ($images_code = $request->file('images_code')) {
+            foreach ($images_code as  $item) {
+                $url = $item->store('images/project', 'public');
+                $project->images()->create([
+                    'url_code' => $url,
                 ]);
             }
         }

@@ -34,5 +34,9 @@
     <label for="images" class="form-label">Images</label>
     <input type="file" multiple name="images[]" class="form-control" id="images" >
 </div>
+<div class="col-12">
+    <label for="images_code" class="form-label">Images Code</label>
+    <input type="file" multiple name="images_code[]" class="form-control" id="images_code" >
+</div>
 
 
