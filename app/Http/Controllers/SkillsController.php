@@ -70,9 +70,9 @@ class SkillsController extends Controller
       */
      public function update(Request $request,$id)
      {
-         $input = $request->all();
+        //  $input = $request->all();
          $skill = Skills::findOrFail($id);
-         $skill->update($input);
+         $skill->update($request->all());
          return redirect()->route('skills.index')->with('success', 'le contenu a été bien enregistré');
      }
  
