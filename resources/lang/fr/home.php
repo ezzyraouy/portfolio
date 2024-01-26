@@ -53,5 +53,9 @@ return [
         'msg'=>"Message",
         'btn'=>"Envoyer le message",
     ],
+    'single-project' => [
+        'images'=>'Images de Site',
+        'images_code'=>'Images de Code',
+    ],
     'devweb'=>'Dévelepement Web',
 ];

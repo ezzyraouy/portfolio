@@ -17,6 +17,7 @@
     <link href="{{ asset('assets1/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets1/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets1/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -80,6 +81,14 @@
     <script src="{{ asset('assets1/vendor/waypoints/noframework.waypoints.js') }}"></script>
     <script src="{{ asset('assets1/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('assets1/js/main.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const glightbox = GLightbox({
+                selector: '.glightbox'
+            });
+        });
+    </script>
 
 </body>
 

@@ -49,5 +49,9 @@ return [
         'message' => 'Message',
         'btn' => 'Send Message',
     ],
+    'single-project' => [
+        'images'=>'Website Images',
+        'images_code'=>'Code Images',
+    ],
     'devweb'=>'Web Development',
 ];

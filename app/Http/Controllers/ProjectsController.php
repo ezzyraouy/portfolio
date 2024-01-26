@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Images;
 use App\Models\Projects;
 use Illuminate\Http\Request;
 
@@ -69,7 +70,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        return view('single-project',['project'=>Projects::findOrFail($id)]);
+        return view('single-project',['project'=>Projects::findOrFail($id),'images'=> Images::where('project_id',$id)->where('url','!=',null)->get(),'images_code'=> Images::where('project_id',$id)->where('url_code','!=',null)->get()]);
     }
 
     /**

@@ -1206,3 +1206,10 @@ section {
 #footer .credits {
   font-size: 13px;
 }
+#portfolio-details .cont-image{
+  display: flex;
+  background-color: #8080801a;
+  margin-right: 20px;
+  align-content: center;
+  flex-wrap: wrap;
+}
