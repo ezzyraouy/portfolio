@@ -17,11 +17,11 @@
         }
     }
 
-    .portfolio-details .portfolio-description .project-content strong {
+    .portfolio-details .portfolio-description strong {
         color: #2c3e50;
     }
 
-    .portfolio-details .portfolio-description .project-content h3 {
+    .portfolio-details .portfolio-description  h3 {
         font-size: 22px;
         font-weight: 700;
         margin-bottom: 20px;
@@ -30,7 +30,7 @@
         border-bottom: 1px solid #eee;
     }
 
-    .portfolio-details .portfolio-description .project-content h3:after {
+    .portfolio-details .portfolio-description h3:after {
         content: "";
         position: absolute;
         display: block;
@@ -96,9 +96,9 @@
                             </div>
                         </div>
                         @if ($images->count() > 0)
-                        <div class="row justify-content-center">
-                            <div class="col-12" data-aos="fade-up">
-                                <h3 class="text-primary">{!! __('home.single-project.images') !!}</h3>
+                        <div class="row container mt-2 justify-content-center">
+                            <div class="col-12">
+                                <h3 class="">{!! __('home.single-project.images') !!}</h3>
                                 <div class="row  mt-4">
                                     <div class="col-lg-4  cont-image col-md-6 mt-4">
                                         <a href="{{ asset('storage/' . $project->image) }}" data-gallery="portfolio-gallery"
@@ -121,9 +121,9 @@
                         </div>
                         @endif
                         @if ($images_code->count() > 0)
-                        <div class="row mt-4 justify-content-center" data-aos="fade-up">
-                            <div class="col-10">
-                                <h3 class="text-primary">{!! __('home.single-project.images_code') !!}</h3>
+                        <div class="row container mt-2 justify-content-center">
+                            <div class="col-12">
+                                <h3 class="">{!! __('home.single-project.images_code') !!}</h3>
                                 <div class="row  mt-4">
                                     @foreach ($images_code as $item)
                                     <div class="col-lg-4  cont-image col-md-6 mt-4">
@@ -140,9 +140,9 @@
                         @endif
                         <!-- Video Section -->
                         @if ($project->video)
-                        <div class="row mt-5">
-                            <h3 class="text-primary">{!! __('home.single-project.video') !!}</h3>
-                            <div class="col-12" data-aos="fade-up">
+                        <div class="row container mt-2 justify-content-center">
+                            <h3 class="">{!! __('home.single-project.video') !!}</h3>
+                            <div class="col-12" >
                                 <div class="video-wrapper">
                                     <video src="{{ asset('storage/' . $project->video) }}" controls class="w-100"></video>
                                 </div>
@@ -182,7 +182,7 @@
         @if(isset($relatedprojects) && $relatedprojects->count() > 0)
         <div class="container mt-4" data-aos="fade-up">
             <div class="row">
-                <h2 class="text-center mb-4 mt-4">Related Project</h2>
+                <h2 class="text-center mb-4 mt-4">{!! __('home.single-project.related_project') !!}</h2>
                 @foreach ($relatedprojects as $project)
                 <div
                     class="col-lg-4 mb-4 col-md-6 portfolio-item isotope-item {{ $project->categories->pluck('name')->implode(' ') }}">
