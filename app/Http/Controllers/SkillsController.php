@@ -2,73 +2,101 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Helpers\FlashMessage;
+use App\Models\Skills;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Helpers\FlashMessage; // Ensure this helper exists
 
-class UserController extends Controller
+class SkillsController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        return view('admin.skills.index', ['skills' => Skills::all()]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
     public function create()
     {
-        return view('users.create');
+        return view('admin.skills.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'percent' => 'required|numeric|min:10|max:100',
+            'language' => 'required|string|max:100',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'type' => $request->type ?? 'customer',
-            'rule' => $request->rule ?? 'user',
-        ]);
+        Skills::create($request->all());
 
-        return redirect()->route('users.index')->with('success', FlashMessage::success('User', 'created'));
+        return redirect()->route('skills.index')->with('success', FlashMessage::success('Skill', 'add'));
     }
 
-    public function show(User $user)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show()
     {
-        return view('users.show', compact('user'));
+
     }
 
-    public function edit(User $user)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
     {
-        return view('users.edit', compact('user'));
+        return view('admin.skills.edit', ['skill' => Skills::findOrFail($id)]);
     }
 
-    public function update(Request $request, User $user)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'email' => 'sometimes|string|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6|confirmed',
+            'percent' => 'required|numeric|min:10|max:100',
+            'language' => 'required|string|max:100',
         ]);
 
-        $user->update([
-            'name' => $request->name ?? $user->name,
-            'email' => $request->email ?? $user->email,
-            'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
-        ]);
+        $skill = Skills::findOrFail($id);
+        $skill->update($request->all());
 
-        return redirect()->route('users.index')->with('success', FlashMessage::success('User', 'updated'));
+        return redirect()->back()->with('success', FlashMessage::success('Skill', 'update'));
     }
 
-    public function destroy(User $user)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
     {
-        $user->delete();
-        return redirect()->route('users.index')->with('success', FlashMessage::success('User', 'deleted'));
+        $skill = Skills::findOrFail($id);
+        $skill->delete();
+        return redirect()->back()->with('danger', FlashMessage::danger('Skill', 'delete'));
     }
 }

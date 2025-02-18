@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Helpers\FlashMessage; // Ensure this helper exists
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::all();
-        return view('admin.users.index', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     public function create()
     {
-        return view('admin.users.create');
+        return view('users.create');
     }
 
     public function store(Request $request)
@@ -35,17 +36,17 @@ class UserController extends Controller
             'rule' => $request->rule ?? 'user',
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('users.index')->with('success', FlashMessage::success('User', 'created'));
     }
 
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        return view('users.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
@@ -62,12 +63,12 @@ class UserController extends Controller
             'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('users.index')->with('success', FlashMessage::success('User', 'updated'));
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        return redirect()->route('users.index')->with('success', FlashMessage::success('User', 'deleted'));
     }
 }
