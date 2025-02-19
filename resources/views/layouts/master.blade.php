@@ -8,6 +8,11 @@
     <meta content="Abdelilah Ezzyraouy: Aspiring software developer skilled in PHP, Laravel, Vue.js, and more, eager to build impactful and user-friendly digital solutions" name="description">
     <meta content="" name="keywords">
     @yield('meta')
+    <meta property="og:title" content="Abdelilah Ezzyraouy">
+    <meta property="og:description" content="Abdelilah Ezzyraouy: Aspiring software developer skilled in PHP, Laravel, Vue.js, and more, eager to build impactful and user-friendly digital solutions">
+    <meta property="og:image" content="{{ asset('assets1/img/hero-bg.jpg') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
     <!--Favicon-->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets1/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets1/img/favicon/favicon-32x32.png') }}">
